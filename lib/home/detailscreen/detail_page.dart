@@ -15,28 +15,6 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white70,
-      bottomNavigationBar: TextButton(
-        onPressed: () {
-          if(productList1[selectindex]['boolck']!=true)
-            {
-              productList1[selectindex]['total']=productList1[selectindex]['total']+productList1[selectindex]['product_price'];
-              productList1[selectindex]['inc_dec']=productList1[selectindex]['inc_dec']+1;
-              productList1[selectindex]['boolck']=true;
-              cartList.add(productList1[selectindex]);
-              amount=productList1[selectindex]['product_price']+amount;
-            }
-          Navigator.of(context).pushNamed('/cart');
-        },
-        child: Container(
-          height: 60,
-          // color: Colors.black26,
-          child: Center(
-            child: Text(
-              'Add To Cart',style: TextStyle(color: Colors.black,fontSize: 35),
-            ),
-          ),
-        ),
-      ),
       appBar: AppBar(
         leading: GestureDetector(
             onTap: () {
@@ -52,11 +30,40 @@ class _DetailPageState extends State<DetailPage> {
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         actions: [
-          const Icon(
-            Icons.shopping_bag_outlined,
-            size: 35,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed('/cart');
+            },
+            child: const Icon(
+              Icons.shopping_bag_outlined,
+              size: 35,
+            ),
           ),
         ],
+      ),
+      bottomNavigationBar: TextButton(
+        onPressed: () {
+          setState(() {
+          if(productList1[selectindex]['boolck']==false)
+            {
+              productList1[selectindex]['total']+=productList1[selectindex]['product_price'];
+              productList1[selectindex]['inc_dec']++;
+              productList1[selectindex]['boolck']=true;
+              amount=productList1[selectindex]['product_price']+amount;
+              cartList.add(productList1[selectindex]);
+            }
+          Navigator.of(context).pushNamed('/cart');
+          });
+        },
+        child: Container(
+          height: 60,
+          // color: Colors.black26,
+          child: const Center(
+            child: Text(
+              'Add To Cart',style: TextStyle(color: Colors.black,fontSize: 35),
+            ),
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -109,8 +116,7 @@ class _DetailPageState extends State<DetailPage> {
                         const SizedBox(
                           width: 10,
                         ),
-                        Text('\$ '+
-                          productList1[selectindex]['product_price'].toString(),
+                        Text('\$ ${productList1[selectindex]['product_price'].toString()}',
                           style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,

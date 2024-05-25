@@ -110,7 +110,7 @@ Widget productData({required AssetImage img,required int price,required String b
             image:DecorationImage(
                 image: img,
                 fit: BoxFit.cover
-            )
+            ),
         ),
       ),
       SizedBox(

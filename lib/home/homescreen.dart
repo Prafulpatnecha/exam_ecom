@@ -1,5 +1,6 @@
 // import 'package:exam_ecom/utils/images.dart';
 // import 'package:exam_ecom/utils/list_product.dart';
+import 'package:exam_ecom/utils/images.dart';
 import 'package:exam_ecom/utils/list_product.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class MyEcom extends StatelessWidget {
       routes: {
         '/': (context) => const HomePage(),
         '/details':(context) => const DetailPage(),
-        '/cart':(context) => CartPage(),
+        '/cart':(context) => const CartPage(),
       },
     );
   }

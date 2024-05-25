@@ -1,7 +1,8 @@
 import 'package:exam_ecom/utils/list_product.dart';
-import 'package:flutter/cupertino.dart';
+
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+// import 'package:flutter/widgets.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -25,16 +26,42 @@ class _CartPageState extends State<CartPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ...List.generate(cartList.length,
-                  (index) => cartlistfull(incdec: cartList[index]['inc_dec'],img: cartList[index]['product_image'],addicon: GestureDetector(
-                    onTap: () {
-                      cartList[index]['inc_dec']++;
-                    },child: Icon(Icons.exposure_minus_1_sharp),
-                  ),decicon: GestureDetector(
-                      onTap: () {
-                        cartList[index]['total']+cartList[index]['product_price'];
-                        cartList[index]['inc_dec']++;
-                      },child: Icon(Icons.exposure_plus_1),),total: cartList[index]['total'],name: cartList[selectindex]['product_name'])),
+              ...List.generate(
+                  cartList.length,
+                  (index) => cartlistfull(removeState: IconButton(onPressed: () {
+                    setState(() {
+                      cartList[index]['total']=0;
+                      cartList[index]['inc_dec']=0;
+                      cartList[index]['boolck']=false;
+                      cartList.removeAt(index);
+                    });
+                  }, icon: const Icon(Icons.delete_forever_outlined,color: Colors.greenAccent,)),
+                      incdec: cartList[index]['inc_dec'],
+                      img: cartList[index]['product_image'],
+                      addicon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            if (cartList[index]['inc_dec'] > 1) {
+                            cartList[index]['inc_dec']--;
+                              cartList[index]['total']-=cartList[index]['product_price'];
+                            }
+                          });
+                        },
+                        child: const Icon(Icons.exposure_minus_1_sharp),
+                      ),
+                      decicon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            // if (cartList[index]['inc_dec'] !=1) {
+                              cartList[index]['inc_dec']++;
+                              cartList[index]['total']+=cartList[index]['product_price'];
+                            // }
+                          });
+                        },
+                        child: const Icon(Icons.exposure_plus_1),
+                      ),
+                      total: cartList[index]['total'],
+                      name: cartList[index]['product_name'])),
             ],
           ),
         ),
@@ -45,9 +72,11 @@ class _CartPageState extends State<CartPage> {
   Row cartlistfull(
       {required AssetImage img,
       required String name,
-      required int total,
+      required var total,
       required GestureDetector addicon,
-      required GestureDetector decicon,required incdec}) {
+      required GestureDetector decicon,
+      required IconButton removeState,
+      required var incdec}) {
     return Row(
       children: [
         Container(
@@ -59,16 +88,18 @@ class _CartPageState extends State<CartPage> {
               image: img,
             ),
           ),
+          alignment: Alignment.topLeft,
         ),
         Column(
           children: [
             Text(
               name,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
               ),
             ),
             Text('Total : ${total.toString()}'),
+            removeState
           ],
         ),
         const Spacer(),
@@ -81,23 +112,30 @@ class _CartPageState extends State<CartPage> {
                 child: addicon,
                 // Icon(Icons.exposure_plus_1)),
               ),
-              SizedBox(width: 10,)
-    ,Container(
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
                 decoration:
                     BoxDecoration(border: Border.all(color: Colors.black)),
                 child: decicon,
                 // Icon(Icons.exposure_plus_1)),
               ),
-              SizedBox(width: 10,)
-              ,Container(
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
                 // decoration:
-                    // BoxDecoration(border: Border.all(color: Colors.black)),
-                child: Text(incdec.toString(),style: TextStyle(
-                  fontSize: 35
-                ),),
+                // BoxDecoration(border: Border.all(color: Colors.black)),
+                child: Text(
+                  incdec.toString(),
+                  style: const TextStyle(fontSize: 35),
+                ),
                 // Icon(Icons.exposure_plus_1)),
               ),
-              SizedBox(width: 10,)
+              const SizedBox(
+                width: 10,
+              )
             ],
           ),
         )

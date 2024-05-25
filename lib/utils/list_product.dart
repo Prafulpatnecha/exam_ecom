@@ -14,6 +14,7 @@ List productList1=[
     'product_image':p1,
   },
   {
+    'total':0,
     'inc_dec':0,
     'boolck':false,
     'product_name':'The Jiz',
@@ -23,6 +24,7 @@ List productList1=[
     'product_image':p2,
   },
   {
+    'total':0,
     'inc_dec':0,
     'boolck':false,
     'product_name':'The Mirac',
@@ -32,6 +34,7 @@ List productList1=[
     'product_image':p3,
   },
   {
+    'total':0,
     'inc_dec':0,
     'boolck':false,
     'product_name':'Bag Door',
@@ -41,6 +44,7 @@ List productList1=[
     'product_image':p4,
   },
   {
+    'total':0,
     'inc_dec':0,
     'boolck':false,
     'product_name':'The Bag Jiz',
@@ -50,6 +54,7 @@ List productList1=[
     'product_image':p5,
   },
   {
+    'total':0,
     'inc_dec':0,
     'boolck':false,
     'product_name':'Pink Wall',
@@ -59,6 +64,7 @@ List productList1=[
     'product_image':p6,
   },
   {
+    'total':0,
     'inc_dec':0,
     'boolck':false,
     'product_name':'Mirac Blue',
@@ -68,6 +74,7 @@ List productList1=[
     'product_image':p7,
   },
   {
+    'total':0,
     'inc_dec':0,
     'boolck':false,
     'product_name':'Bag Top Blur',
@@ -77,6 +84,7 @@ List productList1=[
     'product_image':p8,
   },
   {
+    'total':0,
     'inc_dec':0,
     'boolck':false,
     'product_name':'The Red Port',
@@ -86,6 +94,7 @@ List productList1=[
     'product_image':p9,
   },
   {
+    'total':0,
     'inc_dec':0,
     'total':0,
     'boolck':false,
